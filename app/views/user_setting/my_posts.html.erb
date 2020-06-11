@@ -1,0 +1,35 @@
+<% provide(:title, "User Setting") %>
+
+<!--Show user's post in setting-->
+
+
+<div class="container-fluid">
+  <div class="row content">
+
+    <!--Show the sidebar firstly-->
+
+    <%= render 'layouts/sidebar' %>
+
+    <!--Caches all user's posts and show it-->
+
+    <% if @user.recent_posts.length <= 0 %>
+      <h4 ><small style="margin-left: 15px"> NO RECENT POSTS</small></h4>
+      <hr>
+      <% end %>
+
+    <div class="col-sm-9">
+      <% @user.recent_posts.each do |post|  %>
+
+        <h4><small>RECENT POSTS</small></h4>
+        <hr>
+        <h3 class="text-left"><%= post.title %></h3>
+        <h5><span class="glyphicon glyphicon-time"></span> Post by <%= link_to @user.name, @user, class: "_link" %>, <%= post.created_date %></h5>
+        <h5><span class="label label-danger"><%= post.category %></span></h5><br>
+        <p><%= post.content %></p>
+        <br><br>
+
+
+      <% end %>
+    </div>
+  </div>
+</div>

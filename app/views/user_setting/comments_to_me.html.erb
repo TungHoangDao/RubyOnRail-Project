@@ -1,0 +1,36 @@
+<% provide(:title, "User Setting") %>
+
+<div class="container-fluid">
+  <div class="row content">
+    <%= render 'layouts/sidebar' %>
+
+    <!-- Show the side bar first !-->
+
+    <div class="col-sm-9">
+      <h4><small>COMMENTS TO ME</small></h4>
+      <hr>
+
+      <div class="col-sm-9">
+
+        <!-- Caches all the comments to this user and show it  !-->
+
+        <% comments = comments_to_user @user %>
+        <% comments.each do |comment|  %>
+          <% belong_post = post_of_comment comment %>
+          <div class="panel-body recent-post">
+            <h5>
+              <span class="glyphicon glyphicon-time" style="margin-left: 10px; font-weight: bold"></span>
+              <%= comment.created_date %> in <%= link_to belong_post.title, belong_post, class: "_link"  %>
+              commented by <%= link_to author_name_of_comment(comment), author_of_comment(comment), class: "_link" %>
+            </h5>
+            <div class="panel-body" style="background-color: rgba(184,162,162,0.25); font-family: monospace; border-radius: 15px">
+              <%= comment.content %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

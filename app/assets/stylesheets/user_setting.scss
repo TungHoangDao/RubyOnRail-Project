@@ -1,0 +1,105 @@
+// Place all the styles related to the UserSetting controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+.row.content {height: 1500px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height: auto;}
+}
+
+.highlight{
+  text-decoration: none;
+  background-color: #0982e3;
+  color: white;
+}
+
+.highlight:hover
+{
+  background-color: #0982e3 !important;
+  color: white;
+}
+
+.sidenav
+{
+  background-color: rgb(97, 95, 95);
+}
+
+//li
+//{
+//  display: inline;
+//}
+//i
+//{
+//  display: inline;
+//  float: right;
+//}
+
+.setting_nav
+{
+  color: white;
+}
+
+.introduction-area
+{
+  min-height: 200px;
+}
+
+
+.setting-avatar{
+  display: block;
+  vertical-align: middle;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin: 15px;
+}
+
+
+.setting-confirm
+{
+  width: 150px;
+}
+
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}

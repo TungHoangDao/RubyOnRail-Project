@@ -1,0 +1,70 @@
+<% provide(:title, "Post") %>
+
+
+<div class="container-fluid">
+  <div class="row content">
+    <% user = User.find(@current_post.author_id) %>
+
+    <div class="col-sm-9">
+      <hr>
+      <h3 class="text-left"><%= @current_post.title %></h3>
+      <h5 style="float: left"><span class="label label-danger"><%= @current_post.category %></span></h5>
+      <h5 style="float: right;"><span class="glyphicon glyphicon-eye-open"></span>  <%= @current_post.total_view %>
+      </h5>
+      <h5 style="float: right; margin-right: 50px">
+        <span class="glyphicon glyphicon-comment"></span>  <%= @current_post.total_comment %>
+      </h5>
+
+      <div class="well" style="margin-top: 50px">
+        <div class="row">
+          <%= link_to (image_tag user.avatar, class: "avatar"), user, class: "_link" %>
+          <%= link_to user.name, user, class: "_link" %>
+          <h5 style="display: inline; margin-left: 100px">
+            <span class="glyphicon glyphicon-time"></span> <%= @current_post.created_date %></h5>
+        </div>
+      </div>
+
+
+      <p><%= @current_post.content %></p>
+      <br>
+      <br>
+      <br>
+
+      <% if @user %>
+        <!--      Leave a comment only if user has already logged in-->
+        <h5>Leave a Comment:</h5>
+        <% comment = Comment.new %>
+        <%= form_for(comment, class: "role comment-area") do |f| %>
+          <%= f.text_area :content, class: 'form-control' %>
+          <%= hidden_field_tag :user_id, @user.id %>
+          <%= hidden_field_tag :post_id, @current_post.id %>
+          <%= f.submit "Submit", class: "btn btn-success" %>
+        <% end %>
+        <br><br>
+      <% end %>
+
+
+      <!--      show total post comments-->
+      <p><span class="badge"><%= @postComments.length %></span> Comments:</p><br>
+
+      <!--      show all comment for this post-->
+      <% @postComments.each do |comment| %>
+        <div class="panel-body recent-post">
+          <h5>
+            <% user = User.find(comment.user_id) %>
+            <%= link_to (image_tag user.avatar, class: "avatar"), user, class: "_link" %>
+            <%= link_to user.name, user, class: "_link" %>  comment at
+            <span class="glyphicon glyphicon-time" style="margin-left: 10px; font-weight: bold"></span>
+            <%= comment.created_date %>
+          </h5>
+          <div class="panel-body" style="background-color: rgba(184,162,162,0.25); font-family: monospace; border-radius: 15px">
+            <%= comment.content %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+
+  </div>
+</div>
+</div>

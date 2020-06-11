@@ -1,0 +1,21 @@
+// Place all the styles related to the NewsPost controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.post-container
+{
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+
+.post-cell
+{
+  background-color: rgba(193, 219, 210, 0.5);
+  border-radius: 15px;
+}
+
+.post-cell-inner
+{
+  background-color: rgba(255, 255, 255, 0);
+}

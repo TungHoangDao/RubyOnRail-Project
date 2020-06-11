@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="row" style="text-align: center">
+      <!--    Show user avatar and created date-->
+      <%= link_to image_tag(@user.avatar, class: "profile_image"), @user %>
+    </div>
+
+
+    <h1 style="color: #000000"> <%= link_to @user.name, @user, class: "_link" %></h1>
+    <h5 class="text-center">
+      <span class="glyphicon glyphicon-time" style="margin-right: 10px"></span>
+      <%= @user.created_date %>
+    </h5>
+
+<!--    Show user's city info-->
+    <h5 class="text-center">
+      <span class="glyphicon glyphicon-map-marker" style="margin-right: 10px"></span>
+      <%= @user.city %>
+    </h5>
+  </div>
+</div>
+
+<div class="well" style="background-color: #bed9f8">
+  <div class="row">
+    <!--      Show recent post of this user-->
+
+    <div class="well col-md-6">
+      <div class="panel-heading" style="background-color: #e5e3e3; font-size: 16pt">
+        <p> <h5 style="display: inline; color: #4bafff; font-size: 16pt">Another</h5> Recent post:</p>
+      </div>
+
+      <% @user.recent_posts.each do |post| %>
+        <div class="panel-body recent-post" style="border-radius: 5px">
+          <p> <h5 style="display: inline; color: #4bafff"><%= link_to post.title, post, class: "_link" %> </h5>
+          <h5 style="display: inline-block; float: right">
+            <span class="glyphicon glyphicon-time" style="margin-right: 10px"></span>
+            <%= post.created_date %>
+          </h5>
+          </p>
+        </div>
+      <% end %>
+    </div>
+
+<!--    Show recent comments of this user-->
+    <div class="well col-md-6">
+      <div class="panel-heading" style="background-color: #e5e3e3; font-size: 16pt">
+        <p> <h5 style="display: inline; color: #4bafff; font-size: 16pt">Another</h5> Recent comments:</p>
+      </div>
+      <% comments = comments_of_user @user %>
+
+      <% comments.each do |comment| %>
+        <% belong_post = post_of_comment comment %>
+        <div class="panel-body recent-post">
+          <h5>
+            <span class="glyphicon glyphicon-time" style="margin-left: 10px; font-weight: bold"></span>
+            <%= comment.created_date %> in <%= link_to belong_post.title, belong_post, class: "_link"  %>
+            comment:
+          </h5>
+          <div class="panel-body" style="background-color: rgba(184,162,162,0.25); font-family: monospace; border-radius: 15px">
+            <%= comment.content %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

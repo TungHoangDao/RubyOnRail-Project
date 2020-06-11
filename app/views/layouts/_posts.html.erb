@@ -1,0 +1,29 @@
+<div class="well post-container">
+
+  <% @posts.each do |post| %>
+    <div style="margin: 1px;" class="row <%= post.category %> recent-post post-cell">
+      <div class="col-sm-12">
+        <div class="topnav post-cell-inner">
+          <% user = User.find(post.author_id) %>
+          <div style="margin-top: 2.5%;">
+            <%= link_to image_tag(user.avatar, class: "gravatar"), user, class: "_link" %>
+          </div>
+          <h5> <%= link_to post.title, post ,class: "_link title" %> </h5>
+          <div class="post_subinfo">
+            <h5>  <%= link_to user.name, user, class: "_link" %></h5>
+            <h5 style="display: inline; margin-left: 25px"><span class="glyphicon glyphicon-time"></span> <%= post.created_date %></h5>
+            <h5 style="float: left"><span class="label label-danger"><%= post.category %></span></h5>
+
+            <h5 style="float: right;"><span class="glyphicon glyphicon-eye-open"></span>  <%= post.total_view %>
+            </h5>
+            <h5 style="float: right;"><span class="glyphicon glyphicon-comment"></span>  <%= post.total_comment %>
+            </h5>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  <% end %>
+</div>

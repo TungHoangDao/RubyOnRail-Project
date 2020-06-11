@@ -1,0 +1,10 @@
+<div class="col-sm-3 sidenav">
+  <ul class="nav nav-pills nav-stacked">
+    <li > <%= link_to "My Profile", settings_profile_path, class: @path == settings_profile_path ? "highlight setting_nav" : "setting_nav" %></li>
+    <li > <%= link_to "My Posts", settings_my_posts_path, class: @path == settings_my_posts_path ? "setting_nav highlight" : "setting_nav" %></li>
+    <li > <%= link_to "My Comments", settings_my_comments_path, class: @path == settings_my_comments_path ? "setting_nav highlight" : "setting_nav" %></li>
+    <li > <%= link_to "Comments to Me", settings_comments_to_me_path, class: @path == settings_comments_to_me_path ? "setting_nav highlight" : "setting_nav" %></li>
+    <li><%= link_to "Setting", settings_setting_path, class: @path == settings_setting_path ? "setting_nav highlight" : "setting_nav" %></li>
+  </ul>
+  <br>
+</div>

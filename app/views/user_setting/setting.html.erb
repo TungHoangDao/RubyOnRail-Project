@@ -1,0 +1,75 @@
+<% provide(:title, "User Setting") %>
+<% provide(:button_text, "Confirm") %>
+
+<div class="container-fluid">
+  <div class="row content">
+
+    <!--    Display the side bar with different settings-->
+    <%= render 'layouts/sidebar' %>
+
+    <div class="col-sm-9">
+      <h4><small>SETTING</small></h4>
+      <hr>
+
+      <ul class="nav nav-tabs">
+        <li class="<%= UserSettingController.is_contact_active %>"><a data-toggle="tab" href="#home">Personal Info</a>
+        </li>
+        <li class="<%= UserSettingController.is_avatar_active %>"><a data-toggle="tab" href="#menu1">Avatar</a></li>
+        <li class="<%= UserSettingController.is_password_active %>"><a data-toggle="tab" href="#menu2">Password</a></li>
+        <li class="<%= UserSettingController.is_verification_active %>">
+          <a data-toggle="tab" href="#menu3">Verification</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <!--        modify the contact details-->
+        <div id="home" class="tab-pane fade <%= UserSettingController.is_contact_active %>">
+          <div class="well">
+            <p>You can modify your contact details below</p>
+          </div>
+          <%= render 'layouts/modify_form' %>
+        </div>
+
+        <!--        Change avatar of user-->
+        <div id="menu1" class="tab-pane fade <%= UserSettingController.is_avatar_active %>">
+          <%= form_for(@user, url: update_avatar_user_path(@user), :html => {:method => :post}) do |f| %>
+            <%= render 'shared/error_messages', object: @user %>
+            <%= f.file_field :picture %>
+            <%= image_tag @user.avatar, class: "setting-avatar" %>
+            <%= f.submit "Confirm", class: "btn btn-primary setting-confirm" %>
+          <% end %>
+        </div>
+
+        <!--        Update password setting-->
+        <div id="menu2" class="tab-pane fade <%= UserSettingController.is_password_active %>">
+          <%= form_for(@user, url: update_password_user_path(@user), :html => {:method => :post}) do |f| %>
+            <%= render 'shared/error_messages', object: @user %>
+            <%= f.label :password, "New password:" %>
+            <%= f.password_field :password, class: 'form-control' %>
+            <%= f.label :password_confirmation, "New password confirmation:" %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+            <%= f.submit "Confirm", class: "btn btn-primary setting-confirm" %>
+          <% end %>
+        </div>
+
+        <!--        Update verification card setting-->
+        <div id="menu3" class="tab-pane fade <%= UserSettingController.is_verification_active %>">
+          <% card = card_of_user @user %>
+          <%= form_for(card) do |f| %>
+            <%#= render 'shared/error_card_messages', object: card %>
+            <%= f.label :student_full_name, "Type of Card:" %>
+            <%= f.text_field :student_full_name, class: 'form-control' %>
+            <%= f.label :student_number, "Card Number:" %>
+            <%= f.text_field :student_number, class: 'form-control' %>
+
+            <%= f.file_field :picture %>
+            <% if card.card_image.length > 0 %>
+              <%= image_tag card.card_image, class: "setting-avatar" %>
+            <% end %>
+            <%= f.submit "Confirm", class: "btn btn-primary setting-confirm" %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

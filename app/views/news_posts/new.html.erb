@@ -1,0 +1,22 @@
+<%provide(:title,"Post")%>
+
+<h1>Post</h1>
+<div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <%= form_for(@post) do |f| %>
+        <%= render 'shared/error_post_messages', object: @post %>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control' %>
+        <%= f.collection_select(:category, Category.all, :name, :name ) %>
+        <%= f.label :content %>
+        <%= f.text_area :content, class: 'form-control' %>
+        <%= f.submit "Post", class: "btn btn-primary" %>
+      <% end %>
+
+      <%= link_to "Cancel", root_path, class: "btn btn-primary btn-block", style: "margin-top: 15px" %>
+    </div>
+
+  </div>
+
+</div>

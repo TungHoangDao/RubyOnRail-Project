@@ -1,0 +1,136 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-8">
+
+      <!-- This page is showing the default home pages with recent posts, selected post and so on. !-->
+
+      <div class="row">
+        <div class="col-sm-12">
+
+          <!-- Pass the categories key to coffee script for handle feature selected post only.  !-->
+
+          <div class="panel panel-default text-left user-details" data-categories= "<%= @keys %>">
+            <div class="panel-body">
+              <div class="topnav">
+
+                <!-- Show the button recent post and selected post  !-->
+                <!-- Work with coffee script to do the feature show selected post !-->
+
+                <button onclick="onBtnRecentPostClick(this,'#0FB2EF','#ffffff')" id="btn-recentpost" class="btn btn-primary">Recent Post</button>
+                <button onclick="onBtnSelectedPostClick(this,'#0FB2EF','#FFFFFF')" id="btn-selectedpost" class="btn btn-primary">Selected Post</button>
+
+                <!--                Check if a user current login or not-->
+
+                <% if logged_in? %>
+                  <%= link_to "My Setting", settings_setting_path, class: "btn btn-primary btn-setting" %>
+                <% end %>
+
+
+                <div class="search-container">
+                    <input onchange="onSearchChanged(this)" type="text" placeholder="Search.." name="search">
+                </div>
+                <button id="btnSearch"><i class="fa fa-search"></i></button>
+
+                <!-- Check if user has logged in or not to show Setting
+                    if not, guide user to login page by default.
+                 !-->
+
+                <% if !logged_in? %>
+                  <%= link_to "New Post", login_path, class: "btn btn-primary btn-newpost" %>
+                <% else %>
+                  <%= link_to "New Post", new_news_post_path, class: "btn btn-primary btn-newpost"%>
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Caches all current post and show it with custom CSS for each posts. !-->
+      <%= render 'layouts/posts' %>
+
+
+    </div>
+
+    <!-- These sections below are showing different areas on the left side. !-->
+
+
+    <div class="col-sm-4 well" style="background-color: rgba(255,255,255,0); border: none">
+      <!--      Recent Members Section-->
+      <div class="well right-panel">
+        <h2 style="text-align: left;">Recent Members</h2>
+
+        <div style="margin: 1px;" class="row">
+          <div class="col-sm-12">
+            <% i = 0 %>
+            <% member_count = (User.all).length
+               member_count = member_count.clamp(0,11)
+            %>
+            <% member_count.times do |n| %>
+
+              <div class="row">
+                <br>
+                <% 4.times do |j| %>
+                  <% if i < member_count %>
+                  <div class="col-sm-3">
+                    <div>
+                      <%= link_to image_tag(@users[i].avatar, class: "gravatar"), @users[i], class: "_link" %>
+                      <%= link_to @users[i].name.split.first, @users[i], class: "_link" %>
+                    </div>
+                  </div>
+
+                  <% i = i + 1 %>
+                    <% end %>
+                <% end %>
+              </div>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!--      Topic Section-->
+      <div onload='initCategories(<%= @key %>)' class="well right-panel">
+        <h2 style="text-align: left;">Topics</h2>
+        <div style="margin: 0px auto;" class="row btn-group">
+          <div class="col-sm-12">
+            <% (@categories.keys).each do |key| %>
+              <button onclick="paintIt(this, '#0FB2EF', '#FFFFFF', '<%= key %>', '<%= @keys %>' )" class="topic_element success" style="text-align: center;"><%= key %></button>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+
+      <!--      Post Section-->
+      <div class="well right-panel">
+        <h2 style="text-align: left;">Post</h2>
+        <table class="table">
+          <% @most_view_posts.each do |post| %>
+            <tr>
+              <td style="text-align: left;"><%= post.title %></td>
+              <td style="text-align: right;"><span class="glyphicon glyphicon-eye-open"></span></td>
+              <td style="text-align: left;"><%= post.total_view %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+
+      <!--      Link Session-->
+      <div class="well right-panel">
+        <h2 style="text-align: left;">Links</h2>
+        <div class="row btn-group">
+          <div class="col-sm-12">
+            <div class="row">
+              <a class="link" href="https://www.w3schools.com/" target="_blank">w3Schools</a>
+              <a class="link" href="https://www.rmit.edu.au/" target="_blank">RMIT</a>
+              <a class="link" href="https://www.youtube.com/watch?v=7PJGHt7cDRg" target="_blank">Music</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
