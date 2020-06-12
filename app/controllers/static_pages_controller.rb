@@ -1,7 +1,14 @@
 class StaticPagesController < ApplicationController
   def home
-    Time.zone = "Melbourne";
-    @currentTime = Time.zone.now.strftime '%H:%M'
+    @cities = City.all
+    @dicTime = Hash.new
+    @dicType = Hash.new
+
+    @cities.each do |city|
+      Time.zone = city.name
+      currentTime = Time.zone.now
+      @dicTime[city.name] = currentTime
+    end
   end
 
   def help

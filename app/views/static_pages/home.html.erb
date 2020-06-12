@@ -8,8 +8,6 @@
         <h5><span class="badge badge-primary" style="background-color: #7c827b; margin-right: 3px; color: rgba(255,255,255,0)">|</span>Sleeping time</h5>
       </div>
     </div>
-
-
     <div class="col-sm-8 text-left" style="background-color: #2E2F30; height: 100%">
       <h1 style="color: white">Clock+</h1>
       <h2 style="color: white">Clock+ built by Hoang Tung Dao - s3624473@student.rmit.edu.au - PASS - Group 17:30 Monday</h2>
@@ -23,49 +21,34 @@
 <!--          </tr>-->
           </thead>
           <tbody>
-          <tr style="text-align: center">
-            <th scope="row" style="font-size: 25pt;text-align: center">Melbourne</th>
-            <td>
-              <div>
-                <p style="font-size: 30pt"><%= @currentTime %></p>
-                <h5 style="color: #7c827b">Today
-                  <span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
-              </div>
-            </td>
-          </tr>
 
-          <tr style="text-align: center">
-            <th scope="row" style="font-size: 25pt;text-align: center">Melbourne</th>
-            <td>
-              <div>
-                <p style="font-size: 30pt"><%= @currentTime %></p>
-                <h5 style="color: #7c827b">Today
-                  <span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
-              </div>
-            </td>
-          </tr>
+          <% @cities.each do |city| %>
+            <tr style="text-align: center">
+              <th scope="row" style="font-size: 25pt;text-align: center">
+                <%= city.name %>
+                <% if city.differTime != "0h" %>
+                  <h5 style="color: #999999"><%= city.differTime %></h5>
+                <% end %>
+              </th>
 
-          <tr style="text-align: center">
-            <th scope="row" style="font-size: 25pt;text-align: center">Melbourne</th>
-            <td>
-              <div>
-                <p style="font-size: 30pt"><%= @currentTime %></p>
-                <h5 style="color: #7c827b">Today
-                  <span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
-              </div>
-            </td>
-          </tr>
-
-          <tr style="text-align: center">
-            <th scope="row" style="font-size: 25pt;text-align: center">Melbourne</th>
-            <td>
-              <div>
-                <p style="font-size: 30pt"><%= @currentTime %></p>
-                <h5 style="color: #7c827b">Today
-                  <span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
-              </div>
-            </td>
-          </tr>
+              <td>
+                <div>
+                  <p style="font-size: 30pt"><%= city.time.strftime '%H:%M' %></p>
+                  <h5 style="color: #7c827b"><%= city.dayType %>
+                    <% if city.isBusinessTime %>
+                      <span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
+                      <% elsif city.isBusinessOverTime %>
+                        <span class="badge badge-primary" style="background-color: #e8c02f; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
+                    <% elsif city.isPersonalTime %>
+                      <span class="badge badge-primary" style="background-color: #ee570f; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
+                    <% else %>
+                      <span class="badge badge-primary" style="background-color: #7c827b; margin-right: 3px; color: rgba(255,255,255,0)">|</span><i class="fa fa-bed" aria-hidden="true"></i>
+                      </h5>
+                      <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
 
           </tbody>
         </table>
@@ -85,7 +68,7 @@
         </div>
 
         <div class="checkbox" style="margin-top: 25px">
-          <label><input type="checkbox" value="">24-Hour clock</label>
+          <label><input type="checkbox" value="">12-Hour clock</label>
         </div>
       </div>
 
