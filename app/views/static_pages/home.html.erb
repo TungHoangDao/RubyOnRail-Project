@@ -33,7 +33,9 @@
 
               <td>
                 <div>
-                  <p style="font-size: 30pt"><%= city.time.strftime '%H:%M' %></p>
+                  <p class="base12" style="font-size: 30pt; display: none"><%= city.timeBase12 %></p>
+                  <p class="base24" style="font-size: 30pt"><%= city.timeBase24 %></p>
+
                   <h5 style="color: #7c827b"><%= city.dayType %>
                     <% if city.isBusinessTime %>
                       <span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
@@ -68,7 +70,7 @@
         </div>
 
         <div class="checkbox" style="margin-top: 25px">
-          <label><input type="checkbox" value="">12-Hour clock</label>
+          <label><input onclick="onTimeBaseChange()" type="checkbox" value="">12-Hour clock</label>
         </div>
       </div>
 

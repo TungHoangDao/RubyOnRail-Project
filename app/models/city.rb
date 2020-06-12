@@ -4,6 +4,14 @@ class City < ApplicationRecord
     return Time.zone.now
   end
 
+  def timeBase12
+    time.strftime "%I:%M %p"
+  end
+
+  def timeBase24
+    time.strftime '%H:%M'
+  end
+
   def isBusinessTime
     hour = Time.zone.now.hour
     return hour.between?(9,17)
@@ -57,13 +65,9 @@ class City < ApplicationRecord
   end
 
   def differTime
-    Time.zone = "Melbourne"
-    curTime = Time.zone.now.hour
-
     Time.zone = name
-    time = Time.zone.now.hour
+    hour =     Time.zone.now.utc_offset() / 60 / 60 - 10
 
-    hour = (time-curTime)
     return hour > 0 ? "+" + hour.to_s + "h" : hour.to_s + "h"
   end
 
