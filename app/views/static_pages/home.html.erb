@@ -1,13 +1,94 @@
-<div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav" style="background-color: #2E2F30; color: rgba(255,255,255,255); text-align: left;">
+      <div style="margin-top: 150%">
+        <h5><span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span>Business time</h5>
+        <h5><span class="badge badge-primary" style="background-color: #e8c02f; margin-right: 3px; color: rgba(255,255,255,0)">|</span>Business overtime</h5>
+        <h5><span class="badge badge-primary" style="background-color: #ee570f; margin-right: 3px; color: rgba(255,255,255,0)">|</span>Personal time</h5>
+        <h5><span class="badge badge-primary" style="background-color: #7c827b; margin-right: 3px; color: rgba(255,255,255,0)">|</span>Sleeping time</h5>
+      </div>
+    </div>
 
-  <h2>
-    This is the home page for the
-    <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
-			<%= link_to image_tag("kitten.jpg", alt: "cat logo"),"Sign up now!" , class: "btn btn-lg btn-primary" %>
- 	</div>
 
-<%= link_to image_tag("rails.png", alt: "Rails logo"),
-            'http://rubyonrails.org/' %>
+    <div class="col-sm-8 text-left" style="background-color: #2E2F30; height: 100%">
+      <h1 style="color: white">Clock+</h1>
+      <h2 style="color: white">Clock+ built by Hoang Tung Dao - s3624473@student.rmit.edu.au - PASS - Group 17:30 Monday</h2>
+      <div class="table-wrapper-scroll-y cen my-custom-scrollbar">
+
+        <table class="table table-bordered mb-0" style="color: white;text-align: center">
+          <thead>
+<!--          <tr style="text-align: center">-->
+<!--            <th scope="col">City</th>-->
+<!--            <th scope="col">Time</th>-->
+<!--          </tr>-->
+          </thead>
+          <tbody>
+          <tr style="text-align: center">
+            <th scope="row" style="font-size: 25pt;text-align: center">Melbourne</th>
+            <td>
+              <div>
+                <p style="font-size: 30pt"><%= @currentTime %></p>
+                <h5 style="color: #7c827b">Today
+                  <span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
+              </div>
+            </td>
+          </tr>
+
+          <tr style="text-align: center">
+            <th scope="row" style="font-size: 25pt;text-align: center">Melbourne</th>
+            <td>
+              <div>
+                <p style="font-size: 30pt"><%= @currentTime %></p>
+                <h5 style="color: #7c827b">Today
+                  <span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
+              </div>
+            </td>
+          </tr>
+
+          <tr style="text-align: center">
+            <th scope="row" style="font-size: 25pt;text-align: center">Melbourne</th>
+            <td>
+              <div>
+                <p style="font-size: 30pt"><%= @currentTime %></p>
+                <h5 style="color: #7c827b">Today
+                  <span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
+              </div>
+            </td>
+          </tr>
+
+          <tr style="text-align: center">
+            <th scope="row" style="font-size: 25pt;text-align: center">Melbourne</th>
+            <td>
+              <div>
+                <p style="font-size: 30pt"><%= @currentTime %></p>
+                <h5 style="color: #7c827b">Today
+                  <span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span></h5>
+              </div>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+
+
+    <div class="col-sm-2 sidenav" style="background-color: #2E2F30; color: white; text-align: left">
+      <div style="margin-top: 150%">
+        <h5>Color theme:</h5>
+        <div class="btn-group-vertical">
+          <button type="button" class="btn btn-primary">Black</button>
+          <button type="button" class="btn btn-primary">Graphite</button>
+          <button type="button" class="btn btn-primary">White</button>
+        </div>
+
+        <div class="checkbox" style="margin-top: 25px">
+          <label><input type="checkbox" value="">24-Hour clock</label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

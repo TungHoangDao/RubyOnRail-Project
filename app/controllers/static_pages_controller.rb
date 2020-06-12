@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
+    Time.zone = "Melbourne";
+    @currentTime = Time.zone.now.strftime '%H:%M'
   end
 
   def help
