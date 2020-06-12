@@ -1,6 +1,6 @@
-<div class="container-fluid text-center">
+<div class="container-fluid text-center" data-categories= "theme">
   <div class="row content">
-    <div class="col-sm-2 sidenav" style="background-color: #2E2F30; color: rgba(255,255,255,255); text-align: left;">
+    <div class="col-sm-2 sidenav theme" style="background-color: #2E2F30; color: rgba(255,255,255,255); text-align: left;">
       <div style="margin-top: 150%">
         <h5><span class="badge badge-primary" style="background-color: #2fd013; margin-right: 3px; color: rgba(255,255,255,0)">|</span>Business time</h5>
         <h5><span class="badge badge-primary" style="background-color: #e8c02f; margin-right: 3px; color: rgba(255,255,255,0)">|</span>Business overtime</h5>
@@ -8,9 +8,9 @@
         <h5><span class="badge badge-primary" style="background-color: #7c827b; margin-right: 3px; color: rgba(255,255,255,0)">|</span>Sleeping time</h5>
       </div>
     </div>
-    <div class="col-sm-8 text-left" style="background-color: #2E2F30; height: 100%">
-      <h1 style="color: white">Clock+</h1>
-      <h2 style="color: white">Clock+ built by Hoang Tung Dao - s3624473@student.rmit.edu.au - PASS - Group 17:30 Monday</h2>
+    <div class="col-sm-8 text-left theme" style="background-color: #2E2F30; height: 100%">
+      <h1 class="theme" style="color: white">Clock+</h1>
+      <h2 class="theme" style="color: white">Clock+ built by Hoang Tung Dao - s3624473@student.rmit.edu.au - 80+ level - Group 17:30 Monday</h2>
       <div class="table-wrapper-scroll-y cen my-custom-scrollbar">
 
         <table class="table table-bordered mb-0" style="color: white;text-align: center">
@@ -24,17 +24,17 @@
 
           <% @cities.each do |city| %>
             <tr style="text-align: center">
-              <th scope="row" style="font-size: 25pt;text-align: center">
+              <th class="theme" scope="row" style="font-size: 15pt;text-align: center">
                 <%= city.name %>
                 <% if city.differTime != "0h" %>
-                  <h5 style="color: #999999"><%= city.differTime %></h5>
+                  <h5 class="theme" style="color: #999999"><%= city.differTime %></h5>
                 <% end %>
               </th>
 
               <td>
                 <div>
-                  <p class="base12" style="font-size: 30pt; display: none"><%= city.timeBase12 %></p>
-                  <p class="base24" style="font-size: 30pt"><%= city.timeBase24 %></p>
+                  <p class="base12 theme" style="font-size: 25pt; display: none"><%= city.timeBase12 %></p>
+                  <p class="base24 theme" style="font-size: 25pt"><%= city.timeBase24 %></p>
 
                   <h5 style="color: #7c827b"><%= city.dayType %>
                     <% if city.isBusinessTime %>
@@ -47,12 +47,41 @@
                       <span class="badge badge-primary" style="background-color: #7c827b; margin-right: 3px; color: rgba(255,255,255,0)">|</span><i class="fa fa-bed" aria-hidden="true"></i>
                       </h5>
                       <% end %>
+
+                     <%= link_to "x", city,class: "close theme", method: :delete, style: "color:white" %>
                 </div>
               </td>
+
+
             </tr>
           <% end %>
 
           </tbody>
+
+          <tfoot>
+          <tr>
+            <td colspan="2">
+              <div class="dropdown">
+<!--                <button onclick="myFunction()" class="btn btn-block dropbtn">+</button>-->
+                <% newCity = City.new %>
+                <%= form_for(newCity) do |f| %>
+                  <%= f.label :add_new_City, class: 'theme' %>
+                  <%= f.text_field :name, class: 'form-control theme',:id => "myInput", :onclick => "myFunction()", :onkeyup => "filterFunction()", :placeholder => "Search.." %>
+
+
+                <div id="myDropdown" class="dropdown-content">
+                  <% @zones.each do |zone| %>
+                  <button onclick="zoneSelect('<%= zone %>')" class="btn btn-block"><%= zone.to_s %></button>
+                <% end %>
+                </div>
+                  <%= f.submit "+", class: "btn btn-block dropbtn", style: "display: none" %>
+                <% end %>
+              </div>
+            </td>
+
+          </tr>
+
+          </tfoot>
         </table>
 
       </div>
@@ -60,13 +89,13 @@
 
 
 
-    <div class="col-sm-2 sidenav" style="background-color: #2E2F30; color: white; text-align: left">
+    <div class="col-sm-2 sidenav theme" style="background-color: #2E2F30; color: white; text-align: left">
       <div style="margin-top: 150%">
         <h5>Color theme:</h5>
         <div class="btn-group-vertical">
-          <button type="button" class="btn btn-primary">Black</button>
-          <button type="button" class="btn btn-primary">Graphite</button>
-          <button type="button" class="btn btn-primary">White</button>
+          <button onclick="changeTheme(1)" type="button" class="btn btn-primary">Black</button>
+          <button onclick="changeTheme(2)" type="button" class="btn btn-primary">Graphite</button>
+          <button onclick="changeTheme(3)" type="button" class="btn btn-primary">White</button>
         </div>
 
         <div class="checkbox" style="margin-top: 25px">

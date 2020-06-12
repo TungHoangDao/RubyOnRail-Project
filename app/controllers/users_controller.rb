@@ -100,7 +100,7 @@ class UsersController < ApplicationController
           redirect_to settings_setting_path
         end
     else
-      flash[:danger] = "Image is missing"
+      # flash[:danger] = "Image is missing"
       UserSettingController.lock_setting_path
       redirect_to settings_setting_path
     end
@@ -108,7 +108,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    # flash[:success] = "User deleted"
     redirect_to users_url
   end
 

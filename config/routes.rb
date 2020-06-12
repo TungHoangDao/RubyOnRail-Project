@@ -50,4 +50,6 @@ Rails.application.routes.draw do
   # resources :cards
   # resources :password_resets, only: [:new, :create, :edit, :update]
   # resources :comments
+
+  resources :cities
 end

@@ -1,0 +1,91 @@
+I"t	(function() {
+  var root;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+
+  root.timeBase12 = false;
+
+  this.onTimeBaseChange = function() {
+    var timeBase12, timeBase24;
+    root.timeBase12 = !root.timeBase12;
+    timeBase12 = document.querySelectorAll('.base12');
+    timeBase24 = document.querySelectorAll('.base24');
+    if (root.timeBase12) {
+      timeBase12.forEach(showTime);
+      return timeBase24.forEach(hideTime);
+    } else {
+      timeBase12.forEach(hideTime);
+      return timeBase24.forEach(showTime);
+    }
+  };
+
+  this.showTime = function(value, index, array) {
+    return value.style.display = "block";
+  };
+
+  this.hideTime = function(value, index, array) {
+    return value.style.display = "none";
+  };
+
+  this.myFunction = function() {
+    return document.getElementById("myDropdown").classList.toggle("show");
+  };
+
+  this.zoneSelect = function(zone) {
+    var input;
+    input = document.getElementById("myInput");
+    input.value = zone.toString();
+    return myFunction();
+  };
+
+  this.filterFunction = function() {
+    var a, div, filter, i, input, results, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("button");
+    i = 0;
+    results = [];
+    while (i < a.length) {
+      txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+      results.push(i++);
+    }
+    return results;
+  };
+
+  this.changeTheme = function(type) {
+    var theme;
+    theme = document.querySelectorAll('.theme');
+    alert(type);
+    if (type === 1) {
+      return theme.forEach(changeBlack);
+    } else if (type === 2) {
+      return theme.forEach(changeGraphite);
+    } else {
+      return theme.forEach(changeWhite);
+    }
+  };
+
+  this.changeBlack = function(value, index, array) {
+    theme.style.backgroundColor = "#2E2F30";
+    return theme.style.color = "white";
+  };
+
+  this.changeGraphite = function(value, index, array) {
+    theme.style.backgroundColor = "#2E2F30";
+    return theme.style.color = "white";
+  };
+
+  this.changeWhite = function(value, index, array) {
+    alert("white");
+    theme.style.backgroundColor = '#ffffff';
+    return theme.style.color = '#2E2F30';
+  };
+
+}).call(this);
+:ET
